@@ -12,7 +12,6 @@ const ProtectedRoutes = ({
   children: JSX.Element;
   isLoggedIn: boolean;
 }) => {
-  console.log(123123123);
 
   return isLoggedIn ? children : <Navigate to="/login" />;
 };
