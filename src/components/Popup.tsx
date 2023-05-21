@@ -25,7 +25,7 @@ const Popup: React.FC<PopupProps> = ({ post, isShown, handleTogglePopup }) => {
         </div>
         {post.media && (
           <img
-            src={`http://localhost:3000/uploadfile/${post.media}`}
+            src={`https://welbex-test-8zw6.onrender.com/uploadfile/${post.media}`}
             className="overflow-y-hidden object-contain object-center self-center w-3/6 p-3"
           ></img>
         )}
