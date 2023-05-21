@@ -11,6 +11,14 @@ const HomePage = () => {
   const [posts, setPosts] = useState<Post[]>([]);
   // const user: User = JSON.parse(JSON.stringify(localStorage.getItem('user')))
 
+  const handleAddPost = (post: Post) => {
+    setPosts([...posts, post])
+  }
+
+  const handleRemovePostFromPage = (deletedPost: Post) => {
+    setPosts(posts.filter((post) => post.id !== deletedPost.id))
+  }
+
   const navigate = useNavigate()
   const handleLogout = () => {
     localStorage.removeItem('isLoggedIn')
@@ -26,9 +34,9 @@ const HomePage = () => {
   return (
     // <UserContext.Provider value={user}>
       <div className="flex h-full min-h-screen flex-col items-center bg-blue-900">
-        <Input setPosts={setPosts} posts={posts}/>
+        <Input handleAddPost={handleAddPost}/>
         {posts?.reverse().map((post) => (
-          <PostContainer post={post} key={post.id} />
+          <PostContainer post={post} key={post.id} handleRemovePostFromPage={handleRemovePostFromPage}/>
         )).reverse()}
         <MdLogout className="fixed top-10 right-10 text-yellow-500 cursor-pointer" size={40} onClick={handleLogout}/>
       </div>

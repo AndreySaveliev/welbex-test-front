@@ -8,15 +8,18 @@ import { UserContext } from '../context/userContex';
 import EditPopup from './EditPopup';
 interface PostContainerProps {
   post: Post;
+  handleRemovePostFromPage: (post: Post) => void
 }
 
-const PostContainer: React.FC<PostContainerProps> = ({ post }) => {
+const PostContainer: React.FC<PostContainerProps> = ({ post, handleRemovePostFromPage }) => {
   const [isShown, setIsShown] = useState(false);
   const [isEditPopupShown, setIsEditPopupShown] = useState(false);
   const user = useContext(UserContext);
   const isMine = post.authorId == user.id
   const handleDeletePost = () => {
-    api.deletePost(post.id);
+    api.deletePost(post.id).then((res: Post) => {
+      handleRemovePostFromPage(res)
+    })
   };
 
   const handleToggleEditPopup = useCallback(() => {
@@ -41,7 +44,7 @@ const PostContainer: React.FC<PostContainerProps> = ({ post }) => {
         <div className="flex flex-1 flex-row overflow-hidden" >
           {post.media && (
             <img
-              src={`https://welbex-test-8zw6.onrender.com/uploads/${post.media}`}
+              src={`https://welbex-test-sjh4.onrender.com/uploads/${post.media}`}
               className="overflow-y-hidden object-contain object-center w-[30%] cursor-pointer hover:scale-150  transition duration-500"
               onClick={() => setIsShown(true)}
             ></img>
