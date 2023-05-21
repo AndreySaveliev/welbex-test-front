@@ -13,7 +13,7 @@ const ProtectedRoutes = ({
   isLoggedIn: boolean;
 }) => {
 
-  return isLoggedIn ? children : <Navigate to="/login" />;
+  return isLoggedIn ? children : <Navigate to="/" />;
 };
 
 export default ProtectedRoutes;

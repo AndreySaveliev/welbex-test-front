@@ -13,9 +13,9 @@ function App() {
   return (
     <UserContext.Provider value={user}>
       <Routes>
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Login />} />
         <Route
-          path="/"
+          path="/main"
           element={
             <ProtectedRoutes isLoggedIn={isLoggedIn}>
               <HomePage />

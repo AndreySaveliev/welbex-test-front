@@ -18,7 +18,7 @@ const Login = () => {
           localStorage.setItem('token', JSON.stringify(res.token));
           localStorage.setItem('isLoggedIn', JSON.stringify(true));
           localStorage.setItem('user', JSON.stringify(res.user))
-          navigate('/');
+          navigate('/main');
         });
       });
     } else {
@@ -28,7 +28,7 @@ const Login = () => {
           localStorage.setItem('token', JSON.stringify(res.token));
           localStorage.setItem('isLoggedIn', JSON.stringify(true));
           localStorage.setItem('user', JSON.stringify(res.user))
-          navigate('/');
+          navigate('/main');
         })
         .catch((err) => console.log(err));
     }

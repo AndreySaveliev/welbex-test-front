@@ -16,7 +16,7 @@ const HomePage = () => {
     localStorage.removeItem('isLoggedIn')
     localStorage.removeItem('token')
     localStorage.removeItem('user')
-    navigate('/login')
+    navigate('/')
   }
 
   useEffect(() => {
