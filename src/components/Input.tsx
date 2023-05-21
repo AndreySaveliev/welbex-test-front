@@ -1,9 +1,13 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
 import { api } from "../utils/api";
+import { Post } from "../types/types";
 
+interface InpupProps {
+  setPosts: (arg1: Post) => void
+  posts: Post[]
+}
 
-
-const Input = () => {
+const Input: React.FC<InpupProps> = ({setPosts, posts}) => {
 
   const [selectedFile, setSelectedFile] = useState<File>();
   const [inputText, setInputText] = useState('')
@@ -20,7 +24,12 @@ const Input = () => {
       formData.append('filedata', selectedFile)
     }
     formData.append('body', inputText)
-    api.createPost(formData)
+    api.createPost(formData).then(res => {
+      console.log(res)
+      selectedFile(null)
+      setInputText('')
+      setPosts([...posts, res])
+    })
   }
 
   return (
@@ -38,3 +47,7 @@ const Input = () => {
 };
 
 export default Input;
+function res(value: any) {
+  throw new Error("Function not implemented.");
+}
+

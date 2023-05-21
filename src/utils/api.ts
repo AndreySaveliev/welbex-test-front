@@ -1,7 +1,8 @@
 class Api {
   baseUrl: string
   constructor() {
-    this.baseUrl = 'https://welbex-test-8zw6.onrender.com'
+    // this.baseUrl = 'https://welbex-test-sjh4.onrender.com'
+    this.baseUrl = 'http://localhost:3000'
   }
 
 
@@ -48,7 +49,7 @@ class Api {
         credentials: 'include',
         body: formdata
       })
-      return res.json
+      return res.json()
     } catch (err) {
       console.log(err)
     }

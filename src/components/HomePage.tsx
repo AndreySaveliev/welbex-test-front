@@ -26,7 +26,7 @@ const HomePage = () => {
   return (
     // <UserContext.Provider value={user}>
       <div className="flex h-full min-h-screen flex-col items-center bg-blue-900">
-        <Input />
+        <Input setPosts={setPosts} posts={posts}/>
         {posts?.reverse().map((post) => (
           <PostContainer post={post} key={post.id} />
         )).reverse()}
