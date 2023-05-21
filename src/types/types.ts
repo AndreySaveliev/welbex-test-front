@@ -5,3 +5,9 @@ export type Post = {
   createdAt: Date
   authorId: string
 }
+
+export type User = {
+  id: string,
+  name: string,
+  email: string,
+}
