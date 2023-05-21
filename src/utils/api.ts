@@ -1,7 +1,7 @@
 class Api {
   baseUrl: string
   constructor() {
-    this.baseUrl = 'http://localhost:3000'
+    this.baseUrl = 'https://welbex-test-8zw6.onrender.com'
   }
 
 
