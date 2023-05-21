@@ -13,7 +13,7 @@ const Input = () => {
     }
   }
 
-  const handleCreatePost = async (e) => {
+  const handleCreatePost = async (e: React.FormEvent) => {
     e.preventDefault()
     const formData = new FormData()
     if (selectedFile) {

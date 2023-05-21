@@ -9,13 +9,15 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
-  const handleSubmit = (e) => {
+
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (isRegister) {
-      api.register(email, name, password).then((res) => {
+      api.register(email, name, password).then(() => {
         api.login(email, password).then((res) => {
           localStorage.setItem('token', JSON.stringify(res.token));
           localStorage.setItem('isLoggedIn', JSON.stringify(true));
+          localStorage.setItem('user', JSON.stringify(res.user))
           navigate('/');
         });
       });
@@ -25,6 +27,7 @@ const Login = () => {
         .then((res) => {
           localStorage.setItem('token', JSON.stringify(res.token));
           localStorage.setItem('isLoggedIn', JSON.stringify(true));
+          localStorage.setItem('user', JSON.stringify(res.user))
           navigate('/');
         })
         .catch((err) => console.log(err));
@@ -34,7 +37,7 @@ const Login = () => {
   return (
     <div className="w-full h-screen bg-gray-800 flex justify-center items-center flex-col ">
       <h1 className="font-bold text-xl">{isRegister ? 'Регистрация' : 'Войдите'}</h1>
-      <form className="mx-auto  bg-blue-700 flex flex-col p-4" onSubmit={(e) => handleSubmit(e)}>
+      <form className="mx-auto  bg-blue-700 flex flex-col p-4" onSubmit={handleSubmit}>
         {isRegister && (
           <>
             <label className="text-yellow-400">Name</label>
