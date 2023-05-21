@@ -32,7 +32,7 @@ class Api {
     }
   }
 
-  async checkMe(token) {
+  async checkMe(token: string) {
     try {
       const res = await fetch(`${this.baseUrl}/user`, { credentials: 'include', headers: { 'Content-Type': 'application/json', 'Authorization': `Welbex ${token}` } })
       return res.json()
@@ -41,7 +41,7 @@ class Api {
     }
   }
 
-  async createPost(formdata) {
+  async createPost(formdata: FormData) {
     try {
       const res = await fetch(`${this.baseUrl}/post/`, {
         method: "POST",
@@ -49,6 +49,31 @@ class Api {
         body: formdata
       })
       return res.json
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  async deletePost(id: string) {
+    try {
+      const res = await fetch(`${this.baseUrl}/post/${id}`, {
+        method: 'DELETE',
+        credentials: 'include',
+      })
+      return res.json()
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  async editPost(id : string, formdata: FormData) {
+    try {
+      const res = await fetch(`${this.baseUrl}/post/${id}`, {
+        method: 'PUT',
+        credentials: 'include',
+        body: formdata
+      })
+      return res.json()
     } catch (err) {
       console.log(err)
     }
