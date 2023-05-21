@@ -14,6 +14,7 @@ const PostContainer: React.FC<PostContainerProps> = ({ post }) => {
   const [isShown, setIsShown] = useState(false);
   const [isEditPopupShown, setIsEditPopupShown] = useState(false);
   const user = useContext(UserContext);
+  const isMine = post.authorId == user.id
   const handleDeletePost = () => {
     api.deletePost(post.id);
   };
@@ -40,7 +41,7 @@ const PostContainer: React.FC<PostContainerProps> = ({ post }) => {
         <div className="flex flex-1 flex-row overflow-hidden" >
           {post.media && (
             <img
-              src={`https://welbex-test-8zw6.onrender.com/uploadfile/${post.media}`}
+              src={`https://welbex-test-8zw6.onrender.com/uploads/${post.media}`}
               className="overflow-y-hidden object-contain object-center w-[30%] cursor-pointer hover:scale-150  transition duration-500"
               onClick={() => setIsShown(true)}
             ></img>
@@ -48,7 +49,7 @@ const PostContainer: React.FC<PostContainerProps> = ({ post }) => {
           <div className="w-auto flex flex-1 overflow-hidden items-center text-ellipsis">
             <p className="truncate  cursor-pointer hover:font-semibold" onClick={() => setIsShown(true)}>{post.body}</p>
           </div>
-          {post.authorId === user.id && (
+          {isMine && (
             <>
               <MdEdit
                 size={30}
